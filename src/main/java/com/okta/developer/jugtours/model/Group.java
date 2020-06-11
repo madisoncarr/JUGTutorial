@@ -25,9 +25,9 @@ public class Group {
     private String stateOrProvince;
     private String country;
     private String postalCode;
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade=CascadeType.PERSIST) // Cascade type saying to persist user when group is persisted
     private User user;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL) // Eager fetching gets all events when fetch group
     private Set<Event> events;
 }
