@@ -33,18 +33,19 @@ class GroupController {
     @GetMapping("/group/{id}")
     ResponseEntity<?> getGroup(@PathVariable Long id) { //<?> generic type of unknown, ie wild card
         Optional<Group> group = groupRepository.findById(id);
-        return group.map(response -> ResponseEntity.ok().body(response))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return group.map(response -> ResponseEntity.ok().body(response)) //map function transforms a value to some other value
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND)); //returns default if optional value not present
     }
 
     @PostMapping("/group")
     ResponseEntity<Group> createGroup(@Valid @RequestBody Group group) throws URISyntaxException {
         log.info("Request to create group: {}", group);
         Group result = groupRepository.save(group);
-        return ResponseEntity.created(new URI("/api/group/" + result.getId()))
+        return ResponseEntity.created(new URI("/api/group/" + result.getId())) //created http status and location
                 .body(result);
     }
 
+    //TODO: Test what happens if send request body with no id
     @PutMapping("/group/{id}")
     ResponseEntity<Group> updateGroup(@Valid @RequestBody Group group) {
         log.info("Request to update group: {}", group);
