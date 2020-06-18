@@ -2,6 +2,7 @@ package com.okta.developer.jugtours.web;
 
 import com.okta.developer.jugtours.model.Group;
 import com.okta.developer.jugtours.model.GroupRepository;
+import com.okta.developer.jugtours.model.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -20,15 +21,18 @@ class GroupController {
 
     private final Logger log = LoggerFactory.getLogger(GroupController.class);
     private GroupRepository groupRepository;
+    private UserRepository userRepository;
 
-    public GroupController(GroupRepository groupRepository) {
+    public GroupController(GroupRepository groupRepository, UserRepository userRepository) {
         this.groupRepository = groupRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/groups")
     Collection<Group> groups() {
         return groupRepository.findAll();
     }
+
     //TODO: Test out <?> vs <T> vs <Group> by putting an id that doesn't exist and see what happens; why use <?> ?
     @GetMapping("/group/{id}")
     ResponseEntity<?> getGroup(@PathVariable Long id) { //<?> generic type of unknown, ie wild card
