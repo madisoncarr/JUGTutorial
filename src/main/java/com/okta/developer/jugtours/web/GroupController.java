@@ -54,7 +54,7 @@ class GroupController {
         String userId = details.get("sub").toString();
 
         // check to see if user already exists
-        Optional<User> user = userRepository.findById(Long.parseLong(userId));
+        Optional<User> user = userRepository.findById(userId);
         group.setUser(user.orElse(new User(userId,
                 details.get("name").toString(), details.get("email").toString())));
 
