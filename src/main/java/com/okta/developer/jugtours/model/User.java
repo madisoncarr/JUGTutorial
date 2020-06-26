@@ -6,11 +6,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "jug_user")
 public class User {
 
     @Id
