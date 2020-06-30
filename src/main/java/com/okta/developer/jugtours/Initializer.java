@@ -4,12 +4,14 @@ import com.okta.developer.jugtours.model.Event;
 import com.okta.developer.jugtours.model.Group;
 import com.okta.developer.jugtours.model.GroupRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.Collections;
 import java.util.stream.Stream;
 
+@Profile("initialize")
 @Component //denoted class for Spring to autodetect for dependency injection
 class Initializer implements CommandLineRunner { //CommandLineRunner has run() method for what to do before starting db, like seeding, etc
 
